@@ -79,7 +79,7 @@ typedef struct Nav_struct
 	float tg;   // temperature gyro
 } nav_struct;
 
-int nav_Init(nav_struct* nav);
+int nav_Init(nav_struct* nav, char* peripheric);
 int nav_FlatTrim();
 int nav_GetSample(nav_struct* nav);
 void nav_Print(nav_struct* nav);

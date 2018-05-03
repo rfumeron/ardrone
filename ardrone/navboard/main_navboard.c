@@ -33,16 +33,21 @@
 #include "../util/util.h"
 #include "navboard.h"
 
-int main()
+int main(int argc, char* argv[])
 {
 	int rc;
 	nav_struct nav;
-	
+
+	char name[] = "/dev/tty0";
+	char* peripheric = name;
+	if (argc >= 2)
+		peripheric = argv[1];
+
 	printf("Nav board test program\r\n");
 
 	//nav board
 	printf("Init Navboard ...\r\n");
-	rc = nav_Init(&nav);
+	rc = nav_Init(&nav, peripheric);
 	if(rc) return rc;
 	printf("Init Navboard OK\r\n");
 
@@ -51,13 +56,13 @@ int main()
 	rc=nav_FlatTrim();
 	if(rc) {printf("Failed: retcode=%d\r\n",rc); return rc;}
 	printf("Calibration OK\r\n");
-	 
-	//main loop	
-	while(1) { 
+
+	//main loop
+	while(1) {
 		//get sample
 		rc = nav_GetSample(&nav);
 		if(rc) {
-			printf("ERROR: nav_GetSample return code=%d\n",rc); 
+			printf("ERROR: nav_GetSample return code=%d\n",rc);
 		}
 		nav_Print(&nav);
 	}
