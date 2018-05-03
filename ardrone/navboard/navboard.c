@@ -173,7 +173,7 @@ int nav_FlatTrim()
 		}
 		if (retries == 100)
 			return 1;
-		n++,
+		n++;
 		x1[0]+=(float)nav.acc[0];
 		x2[0]+=(float)nav.acc[0]*(float)nav.acc[0];
 		x1[1]+=(float)nav.acc[1];
